@@ -8,7 +8,6 @@ function App() {
     "파이썬 독학",
   ]);
 
-  let [like, setLike] = useState(0);
 
   let [modal, setModal] = useState(false);
   return (
@@ -17,7 +16,7 @@ function App() {
         <h4 style={{ color: "red", fontSize: "20px" }}>블로그임</h4>
       </div>
 
-      <div className="list">
+      {/* <div className="list">
         <h4>
           {titles[0]}{" "}
           <span
@@ -38,7 +37,11 @@ function App() {
       <div className="list">
         <h4>{titles[2]}</h4>
         <p>2월 17일 발행</p>
-      </div>
+      </div> */}
+
+      {titles.map((title, i) => {
+        return <ListItem title={title} key={i}/>;
+      })}
 
       <button
         onClick={() => {
@@ -66,6 +69,27 @@ function App() {
         {modal ? "modal hide" : "modal show"}
       </button>
       {modal ? <Modal /> : null}
+    </div>
+  );
+}
+
+function ListItem(props) {
+  let [like, setLike] = useState(0);
+
+  return (
+    <div className="list">
+      <h4>
+        {props.title}{" "}
+        <span
+          onClick={() => {
+            setLike(like + 1);
+          }}
+        >
+          👍
+        </span>{" "}
+        {like}
+      </h4>
+      <p>2월 17일 발행</p>
     </div>
   );
 }
