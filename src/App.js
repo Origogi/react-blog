@@ -10,10 +10,7 @@ function App() {
 
   let [like, setLike] = useState(0);
 
-  function onClick() {
-    console.log("1");
-  }
-
+  let [modal, setModal] = useState(false);
   return (
     <div className="App">
       <div className="black-nav">
@@ -61,7 +58,14 @@ function App() {
       >
         타이틀 변경
       </button>
-      <Modal />
+      <button
+        onClick={() => {
+          setModal(!modal);
+        }}
+      >
+        {modal ? "modal hide" : "modal show"}
+      </button>
+      {modal ? <Modal /> : null}
     </div>
   );
 }
