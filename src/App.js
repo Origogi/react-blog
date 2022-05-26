@@ -2,10 +2,17 @@ import { useState } from 'react';
 import './App.css';
 
 function App() {
-  let post = '강남 우동 맛집';
-  let [title1, setTitle1] = useState('남자 코트 추천');
-  let [title2, setTitle2] = useState('강남 우동 맛집');
-  let [title3, setTitle3] = useState('파이썬 독학');
+  let [titles, setTitles] = useState([
+    '남자 코트 추천',
+    '강남 우동 맛집',
+    '파이썬 독학',
+  ]);
+
+  let [like, setLike] = useState(0);
+
+  function onClick() {
+    console.log('1');
+  }
 
   return (
     <div className="App">
@@ -14,17 +21,34 @@ function App() {
       </div>
 
       <div className="list">
-        <h4>{title1}</h4>
+        <h4>
+          {titles[0]}{' '}
+          <span
+            onClick={() => {
+              setLike(like + 1);
+            }}
+          >
+            👍
+          </span>{' '}
+          {like}
+        </h4>
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{title2}</h4>
+        <h4>{titles[1]}</h4>
         <p>2월 17일 발행</p>
       </div>
       <div className="list">
-        <h4>{title3}</h4>
+        <h4>{titles[2]}</h4>
         <p>2월 17일 발행</p>
       </div>
+      <button
+        onClick={() => {
+          setTitles(['여자 코트 추천', titles[1], titles[2]]);
+        }}
+      >
+        타이틀 변경
+      </button>
     </div>
   );
 }
