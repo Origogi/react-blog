@@ -36,23 +36,12 @@ function App() {
         );
       })}
 
-      <button
-        onClick={() => {
-          let result = [...titles];
-          result.sort();
-          setTitles(result);
+      <input
+        onChange={(e) => {
+          console.log(e.target.value);
         }}
-      >
-        가나다순정렬
-      </button>
-      <button onClick={changeFirstTitle}>타이틀 변경</button>
-      <button
-        onClick={() => {
-          setModal(!modal);
-        }}
-      >
-        {modal ? 'modal hide' : 'modal show'}
-      </button>
+      ></input>
+
       {modal ? (
         <Modal
           color={'yellow'}
@@ -72,7 +61,8 @@ function ListItem(props) {
       <h4 onClick={props.onTitleClick}>
         {props.title}{' '}
         <span
-          onClick={() => {
+          onClick={(e) => {
+            e.stopPropagation();
             setLike(like + 1);
           }}
         >
