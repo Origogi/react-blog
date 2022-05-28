@@ -10,6 +10,7 @@ function App() {
 
   let [modal, setModal] = useState(false);
   let [modalTitle, setModalTitle] = useState('');
+  let [userText, setUserText] = useState('');
 
   function changeFirstTitle() {
     let result = [...titles];
@@ -31,6 +32,11 @@ function App() {
               setModal(true);
               setModalTitle(title);
             }}
+            deleteThis={() => {
+              let result = [...titles];
+              result.splice(i, 1);
+              setTitles([...result]);
+            }}
             key={i}
           />
         );
@@ -39,8 +45,16 @@ function App() {
       <input
         onChange={(e) => {
           console.log(e.target.value);
+          setUserText(e.target.value);
         }}
       ></input>
+      <button
+        onClick={() => {
+          setTitles([...titles, userText]);
+        }}
+      >
+        Post
+      </button>
 
       {modal ? (
         <Modal
@@ -71,6 +85,7 @@ function ListItem(props) {
         {like}
       </h4>
       <p>2월 17일 발행</p>
+      <button onClick={props.deleteThis}>삭제</button>
     </div>
   );
 }
